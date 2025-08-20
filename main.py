@@ -36,11 +36,13 @@ def get_user_info(client, user):
 def last_mention_id(client):
 
     response = client.get_users_mentions(bot_user_id, max_results=5)
-    return response.meta.oldest_id
+    pprint(response)
+    return response
 
 
 def phrase_counter(client):
 
+    # if client not initialized 
     if not client:
         print("No valid client connection")
         return 
@@ -49,9 +51,7 @@ def phrase_counter(client):
     user = get_user_info(client, last_mention_id(client))
 
     #search parameters for tweet queries
-    phrases = {
-        "nwords": ["nigga", "hard-r", "nig", "ngga", "negro"],
-        "AAVE": ["ts", "sybau"]}
+    phrases = {"nwords": ["nigga", "hard-r", "nig", "ngga", "negro"]}
     print(phrases["nwords"][0])
 
     # searches specified user's tweets for words in phrases dict and returns their usage frequency
